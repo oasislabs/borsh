@@ -17,7 +17,7 @@ pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream> {
                     }
                 } else {
                     quote! {
-                        #field_name: borsh::BorshDeserialize::deserialize(reader)?,
+                        #field_name: oasis_borsh::BorshDeserialize::deserialize(reader)?,
                     }
                 };
                 body.extend(delta);
@@ -30,7 +30,7 @@ pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream> {
             let mut body = TokenStream::new();
             for _ in 0..fields.unnamed.len() {
                 let delta = quote! {
-                    borsh::BorshDeserialize::deserialize(reader)?,
+                    oasis_borsh::BorshDeserialize::deserialize(reader)?,
                 };
                 body.extend(delta);
             }
@@ -50,7 +50,7 @@ pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream> {
 
     if let Some(method_ident) = init_method {
         Ok(quote! {
-            impl #impl_generics borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
+            impl #impl_generics oasis_borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
                 fn deserialize<R: std::io::Read>(reader: &mut R) -> std::result::Result<Self, std::io::Error> {
                     let mut return_value = #return_value;
                     return_value.#method_ident();
@@ -60,7 +60,7 @@ pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream> {
         })
     } else {
         Ok(quote! {
-            impl #impl_generics borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
+            impl #impl_generics oasis_borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
                 fn deserialize<R: std::io::Read>(reader: &mut R) -> std::result::Result<Self, std::io::Error> {
                     Ok(#return_value)
                 }

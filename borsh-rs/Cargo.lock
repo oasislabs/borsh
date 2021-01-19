@@ -30,8 +30,8 @@ name = "benchmarks"
 version = "0.1.0"
 dependencies = [
  "bincode",
- "borsh",
  "criterion",
+ "oasis-borsh",
  "rand",
  "rand_xorshift",
  "serde",
@@ -56,32 +56,6 @@ name = "bitflags"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf1de2fe8c75bc145a2f577add951f8134889b4795d47466a54a5c846d691693"
-
-[[package]]
-name = "borsh"
-version = "0.2.9"
-dependencies = [
- "borsh-derive",
-]
-
-[[package]]
-name = "borsh-derive"
-version = "0.2.9"
-dependencies = [
- "borsh-derive-internal",
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "borsh-derive-internal"
-version = "0.2.10"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
 
 [[package]]
 name = "bstr"
@@ -324,6 +298,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bcef43580c035376c0705c42792c294b66974abbfd2789b511784023f71f3273"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "oasis-borsh"
+version = "0.2.9"
+dependencies = [
+ "oasis-borsh-derive",
+]
+
+[[package]]
+name = "oasis-borsh-derive"
+version = "0.2.9"
+dependencies = [
+ "oasis-borsh-derive-internal",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "oasis-borsh-derive-internal"
+version = "0.2.14"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]

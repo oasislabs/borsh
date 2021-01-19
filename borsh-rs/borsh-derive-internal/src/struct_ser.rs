@@ -14,7 +14,7 @@ pub fn struct_ser(input: &ItemStruct) -> syn::Result<TokenStream> {
                 }
                 let field_name = field.ident.as_ref().unwrap();
                 let delta = quote! {
-                    borsh::BorshSerialize::serialize(&self.#field_name, writer)?;
+                    oasis_borsh::BorshSerialize::serialize(&self.#field_name, writer)?;
                 };
                 body.extend(delta);
             }
@@ -26,7 +26,7 @@ pub fn struct_ser(input: &ItemStruct) -> syn::Result<TokenStream> {
                     span: Span::call_site(),
                 };
                 let delta = quote! {
-                    borsh::BorshSerialize::serialize(&self.#field_idx, writer)?;
+                    oasis_borsh::BorshSerialize::serialize(&self.#field_idx, writer)?;
                 };
                 body.extend(delta);
             }
@@ -38,7 +38,7 @@ pub fn struct_ser(input: &ItemStruct) -> syn::Result<TokenStream> {
     let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
 
     Ok(quote! {
-        impl #impl_generics borsh::ser::BorshSerialize for #name #ty_generics #where_clause {
+        impl #impl_generics oasis_borsh::ser::BorshSerialize for #name #ty_generics #where_clause {
             fn serialize<W: std::io::Write>(&self, writer: &mut W) -> std::result::Result<(), std::io::Error> {
                 #body
                 Ok(())
@@ -68,10 +68,10 @@ mod tests {
 
         let actual = struct_ser(&item_struct).unwrap();
         let expected = quote!{
-            impl borsh::ser::BorshSerialize for A {
+            impl oasis_borsh::ser::BorshSerialize for A {
                 fn serialize<W: std::io::Write>(&self, writer: &mut W) -> std::result::Result<(), std::io::Error> {
-                    borsh::BorshSerialize::serialize(&self.x, writer)?;
-                    borsh::BorshSerialize::serialize(&self.y, writer)?;
+                    oasis_borsh::BorshSerialize::serialize(&self.x, writer)?;
+                    oasis_borsh::BorshSerialize::serialize(&self.y, writer)?;
                     Ok(())
                 }
             }
@@ -90,10 +90,10 @@ mod tests {
 
         let actual = struct_ser(&item_struct).unwrap();
         let expected = quote!{
-            impl<K: borsh::ser::BorshSerialize, V: borsh::ser::BorshSerialize> borsh::ser::BorshSerialize for A<K, V> {
+            impl<K: oasis_borsh::ser::BorshSerialize, V: oasis_borsh::ser::BorshSerialize> oasis_borsh::ser::BorshSerialize for A<K, V> {
                 fn serialize<W: std::io::Write>(&self, writer: &mut W) -> std::result::Result<(), std::io::Error> {
-                    borsh::BorshSerialize::serialize(&self.x, writer)?;
-                    borsh::BorshSerialize::serialize(&self.y, writer)?;
+                    oasis_borsh::BorshSerialize::serialize(&self.x, writer)?;
+                    oasis_borsh::BorshSerialize::serialize(&self.y, writer)?;
                     Ok(())
                 }
             }

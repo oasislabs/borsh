@@ -1,5 +1,5 @@
 [package]
-name = "borsh-derive"
+name = "oasis-borsh-derive"
 version = "0.2.9"
 authors = ["Near Inc <hello@nearprotocol.com>"]
 edition = "2018"
@@ -16,7 +16,7 @@ Binary Object Representation Serializer for Hashing
 proc-macro = true
 
 [dependencies]
-borsh-derive-internal = { path = "../borsh-derive-internal" , version="0.2.9"}
+oasis-borsh-derive-internal = { path = "../borsh-derive-internal" , version="0.2.9"}
 proc-macro2 = "1.0"
 quote = "1.0"
 syn = {version = "1", features = ["full", "fold"] }

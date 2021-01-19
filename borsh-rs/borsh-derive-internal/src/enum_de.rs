@@ -21,7 +21,7 @@ pub fn enum_de(input: &ItemEnum) -> syn::Result<TokenStream> {
                         });
                     } else {
                         variant_header.extend(quote! {
-                            #field_name: borsh::BorshDeserialize::deserialize(reader)?,
+                            #field_name: oasis_borsh::BorshDeserialize::deserialize(reader)?,
                         });
                     }
                 }
@@ -33,7 +33,7 @@ pub fn enum_de(input: &ItemEnum) -> syn::Result<TokenStream> {
                         variant_header.extend(quote! { Default::default(), });
                     } else {
                         variant_header
-                            .extend(quote! { borsh::BorshDeserialize::deserialize(reader)?, });
+                            .extend(quote! { oasis_borsh::BorshDeserialize::deserialize(reader)?, });
                     }
                 }
                 variant_header = quote! { ( #variant_header )};
@@ -55,7 +55,7 @@ pub fn enum_de(input: &ItemEnum) -> syn::Result<TokenStream> {
 
     if let Some(method_ident) = init_method {
         Ok(quote! {
-            impl #impl_generics borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
+            impl #impl_generics oasis_borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
                 fn deserialize<R: std::io::Read>(reader: &mut R) -> std::result::Result<Self, std::io::Error> {
                     #variant_idx
                     let mut return_value = match variant_idx {
@@ -73,7 +73,7 @@ pub fn enum_de(input: &ItemEnum) -> syn::Result<TokenStream> {
         })
     } else {
         Ok(quote! {
-            impl #impl_generics borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
+            impl #impl_generics oasis_borsh::de::BorshDeserialize for #name #ty_generics #where_clause {
                 fn deserialize<R: std::io::Read>(reader: &mut R) -> std::result::Result<Self, std::io::Error> {
                     #variant_idx
                     let return_value = match variant_idx {
