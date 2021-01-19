@@ -1,14 +1,14 @@
 use crate::attribute_helpers::{contains_initialize_with, contains_skip};
+use proc_macro2::TokenStream;
 use quote::quote;
-use syn::export::TokenStream2;
 use syn::{Fields, ItemStruct};
 
-pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream2> {
+pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream> {
     let name = &input.ident;
     let init_method = contains_initialize_with(&input.attrs)?;
     let return_value = match &input.fields {
         Fields::Named(fields) => {
-            let mut body = TokenStream2::new();
+            let mut body = TokenStream::new();
             for field in &fields.named {
                 let field_name = field.ident.as_ref().unwrap();
                 let delta = if contains_skip(&field.attrs) {
@@ -27,7 +27,7 @@ pub fn struct_de(input: &ItemStruct) -> syn::Result<TokenStream2> {
             }
         }
         Fields::Unnamed(fields) => {
-            let mut body = TokenStream2::new();
+            let mut body = TokenStream::new();
             for _ in 0..fields.unnamed.len() {
                 let delta = quote! {
                     borsh::BorshDeserialize::deserialize(reader)?,

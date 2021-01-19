@@ -1,16 +1,16 @@
 use crate::attribute_helpers::{contains_initialize_with, contains_skip};
+use proc_macro2::TokenStream;
 use quote::quote;
-use syn::export::TokenStream2;
 use syn::{Fields, ItemEnum};
 
-pub fn enum_de(input: &ItemEnum) -> syn::Result<TokenStream2> {
+pub fn enum_de(input: &ItemEnum) -> syn::Result<TokenStream> {
     let name = &input.ident;
     let init_method = contains_initialize_with(&input.attrs)?;
-    let mut variant_arms = TokenStream2::new();
+    let mut variant_arms = TokenStream::new();
     for (variant_idx, variant) in input.variants.iter().enumerate() {
         let variant_idx = variant_idx as u8;
         let variant_ident = &variant.ident;
-        let mut variant_header = TokenStream2::new();
+        let mut variant_header = TokenStream::new();
         match &variant.fields {
             Fields::Named(fields) => {
                 for field in &fields.named {
