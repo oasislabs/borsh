@@ -1,4 +1,4 @@
-use borsh::BorshDeserialize;
+use oasis_borsh::BorshDeserialize;
 
 #[derive(BorshDeserialize, Debug)]
 enum A {

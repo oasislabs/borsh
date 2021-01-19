@@ -1,6 +1,6 @@
 //! This library contains data structures used for benchmarking.
 
-use borsh::{BorshDeserialize, BorshSerialize};
+use oasis_borsh::{BorshDeserialize, BorshSerialize};
 use rand::distributions::{Alphanumeric, Distribution, Standard};
 use rand::Rng;
 use serde::{Deserialize as SerdeDeserialize, Serialize as SerdeSerialize};

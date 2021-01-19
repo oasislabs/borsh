@@ -43,7 +43,7 @@ Why do we need yet another serialization format? Borsh is the first serializer t
 ## Example
 
 ```rust
-use borsh::{BorshSerialize, BorshDeserialize};
+use oasis_borsh::{BorshSerialize, BorshDeserialize};
 
 #[derive(BorshSerialize, BorshDeserialize, PartialEq, Debug)]
 struct A {

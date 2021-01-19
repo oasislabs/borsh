@@ -1,5 +1,5 @@
 use benchmarks::{Account, Block, BlockHeader, Generate, SignedTransaction};
-use borsh::{BorshDeserialize, BorshSerialize};
+use oasis_borsh::{BorshDeserialize, BorshSerialize};
 use rand::SeedableRng;
 use serde::{Deserialize as SerdeDeserialize, Serialize as SerdeSerialize};
 use speedy::Endianness;

@@ -1,6 +1,6 @@
 extern crate proc_macro;
 
-use borsh_derive_internal::*;
+use oasis_borsh_derive_internal::*;
 use proc_macro::TokenStream;
 use quote::{quote, format_ident};
 use syn::{parse_macro_input, Ident, ItemEnum, ItemStruct, ItemUnion, LitInt, Token};

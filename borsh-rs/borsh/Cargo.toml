@@ -1,6 +1,6 @@
 [package]
 name = "oasis-borsh"
-version = "0.2.9"
+version = "0.2.12"
 authors = ["Near Inc <hello@nearprotocol.com>"]
 edition = "2018"
 license = "Apache-2.0"

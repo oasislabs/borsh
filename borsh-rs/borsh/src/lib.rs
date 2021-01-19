@@ -1,4 +1,4 @@
-pub use borsh_derive::{BorshDeserialize, BorshSerialize};
+pub use oasis_borsh_derive::{BorshDeserialize, BorshSerialize};
 
 pub mod de;
 pub mod ser;

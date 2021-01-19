@@ -302,7 +302,7 @@ dependencies = [
 
 [[package]]
 name = "oasis-borsh"
-version = "0.2.9"
+version = "0.2.10"
 dependencies = [
  "oasis-borsh-derive",
 ]

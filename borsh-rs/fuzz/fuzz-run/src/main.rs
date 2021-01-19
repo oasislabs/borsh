@@ -1,4 +1,4 @@
-use borsh::BorshDeserialize;
+use oasis_borsh::BorshDeserialize;
 use std::collections::{BTreeMap, HashMap, HashSet};
 
 #[macro_use]

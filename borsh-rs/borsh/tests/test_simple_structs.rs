@@ -1,5 +1,5 @@
 use std::collections::{HashMap, HashSet};
-use borsh::{BorshSerialize, BorshDeserialize};
+use oasis_borsh::{BorshSerialize, BorshDeserialize};
 
 
 #[derive(BorshSerialize, BorshDeserialize, PartialEq, Debug)]

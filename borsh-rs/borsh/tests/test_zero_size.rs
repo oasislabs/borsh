@@ -1,4 +1,4 @@
-use borsh::{BorshDeserialize, BorshSerialize};
+use oasis_borsh::{BorshDeserialize, BorshSerialize};
 
 #[derive(BorshDeserialize, PartialEq, Debug)]
 struct A;

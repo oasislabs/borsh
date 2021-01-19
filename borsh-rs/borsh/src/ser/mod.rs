@@ -145,6 +145,21 @@ where
     }
 }
 
+
+impl<T> BorshSerialize for &[T]
+where
+    T: BorshSerialize,
+{
+    #[inline]
+    fn serialize<W: Write>(&self, writer: &mut W) -> Result<(), Error> {
+        writer.write_all(&(self.len() as u32).to_le_bytes())?;
+        for item in self.iter() {
+            item.serialize(writer)?;
+        }
+        Ok(())
+    }
+}
+
 impl<T: BorshSerialize> BorshSerialize for &T {
     fn serialize<W: Write>(&self, writer: &mut W) -> Result<(), Error> {
         (*self).serialize(writer)
